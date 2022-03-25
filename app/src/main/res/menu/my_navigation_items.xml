@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@mipmap/home_normal"
+        android:title="@string/text_home" />
+    <item
+        android:id="@+id/message"
+        android:icon="@mipmap/select_normal"
+        android:title="@string/text_message" />
+    <item
+        android:id="@+id/now"
+        android:icon="@mipmap/placehoder_pic"
+        android:title="@string/text_now" />
+</menu>
