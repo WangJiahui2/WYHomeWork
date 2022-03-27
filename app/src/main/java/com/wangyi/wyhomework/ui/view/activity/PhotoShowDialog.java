@@ -1,31 +1,26 @@
-package com.example.admin.lookphoto;
+package com.wangyi.wyhomework.ui.view.activity;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.OnPhotoTapListener;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.wangyi.wyhomework.R;
 
 import java.util.List;
-
-/**
- * @Author cuiChenBo
- * Created by zz on 2018/2/27 15:28.
- * 　　class explain:
- * 　　　　update:       upAuthor:      explain:
- */
 
 public class PhotoShowDialog extends Dialog {
     private Context mContext;

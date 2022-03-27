@@ -17,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/good" />
+            android:src="@mipmap/netease" />
         
         <TextView
             android:id="@+id/logo"
@@ -36,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"
-            android:src="@mipmap/forward" />
+            android:src="@mipmap/add" />
 
 
 

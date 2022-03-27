@@ -25,10 +25,13 @@ import com.wangyi.wyhomework.model.weibolist.WeiBoList;
 import com.wangyi.wyhomework.present.IHomePresenter;
 import com.wangyi.wyhomework.ui.callback.IHomeCallBack;
 import com.wangyi.wyhomework.ui.view.activity.LoginActivity;
+import com.wangyi.wyhomework.ui.view.activity.PhotoShowDialog;
 import com.wangyi.wyhomework.ui.view.activity.WeiBoActivity;
 import com.wangyi.wyhomework.ui.view.activity.WriteWeiBoActivity;
 import com.wangyi.wyhomework.ui.view.adapter.HomeRecyclerViewAdapter;
 import com.wangyi.wyhomework.utils.PresenterManager;
+
+import java.util.Collections;
 
 import butterknife.BindView;
 
@@ -139,12 +142,18 @@ public class HomeFragment extends BaseFragment implements IHomeCallBack, HomeRec
 
         switch (view.getId()) {
             case R.id.weibo_one_pic:
-                
+                PhotoShowDialog photoShowDialogWB = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getOriginalPic()),0);
+                photoShowDialogWB.show();
+                break;
             case R.id.weibo_content:
 //                Intent intent = new Intent(getContext(), WeiBoActivity.class);
 //                intent.putExtra("id",itemBean.getId());
 //                startActivity(intent);
                 break;
+            case R.id.avatar:
+                PhotoShowDialog photoShowDialogAT = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getUser().getAvatarLarge()),0);
+                photoShowDialogAT.show();
+                
 
 
 

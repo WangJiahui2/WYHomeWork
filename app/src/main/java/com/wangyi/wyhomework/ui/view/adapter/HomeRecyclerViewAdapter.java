@@ -85,6 +85,14 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                 }
             });
+            originalWBInnerHolder.avatarIV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
+                }
+            });
         } else {
             try {
                 ((ForWardWBInnerHolder) holder).setData(statusesDTO);

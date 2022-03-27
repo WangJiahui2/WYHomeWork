@@ -37,6 +37,7 @@ public class WriteWeiBoActivity extends AppCompatActivity implements IWriteWeiBo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_weibo);
         ButterKnife.bind(this);
+        initListener();
         
     }
 
@@ -45,14 +46,17 @@ public class WriteWeiBoActivity extends AppCompatActivity implements IWriteWeiBo
         cancleTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onStop();
+                finish();
             }
         });
         
         sendTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mWritePresenter.postWeiBo(LoginActivity.mAccessToken, String.valueOf(sendTv.getText()));
+                if (mWritePresenter != null){
+                    mWritePresenter.postWeiBo(LoginActivity.mAccessToken, String.valueOf(sendTv.getText()));
+                }
+               
             }
         });
         
@@ -65,7 +69,7 @@ public class WriteWeiBoActivity extends AppCompatActivity implements IWriteWeiBo
 
     @Override
     public void onWriteSuccess(StatusesDTO statusesDTO) {
-        onStop();
+        finish();
     }
 
     @Override
