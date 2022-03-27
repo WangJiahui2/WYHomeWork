@@ -9,10 +9,7 @@ import androidx.room.Room;
 
 import com.alibaba.fastjson.JSON;
 import com.wangyi.wyhomework.cache.AppDatabase;
-import com.wangyi.wyhomework.cacheN.AppDatabaseN;
-import com.wangyi.wyhomework.cacheN.WeiBoCacheN;
 import com.wangyi.wyhomework.common.MyApplication;
-import com.wangyi.wyhomework.model.show.Weibo;
 import com.wangyi.wyhomework.model.weibolist.WeiBoList;
 import com.wangyi.wyhomework.net.api.IWeiboApi;
 import com.wangyi.wyhomework.present.IHomePresenter;
@@ -32,10 +29,9 @@ import retrofit2.Retrofit;
 public class HomePresenterImpl implements IHomePresenter {
 
 
-    private IHomeCallBack mCallBack = null;
+    private IHomeCallBack mHomeCallBack = null;
     private WeiBoList wbList;
     private AppDatabase database;
-    private AppDatabaseN databaseN;
     //判断缓存数据是否可用
     private boolean available = false;
 
@@ -53,35 +49,21 @@ public class HomePresenterImpl implements IHomePresenter {
 
     @Override
     public void registerViewCallback(IHomeCallBack callBack) {
-        mCallBack = callBack;
+        this.mHomeCallBack = callBack;
     }
 
     @Override
     public void unRegisterViewCallBack(IHomeCallBack callBack) {
-
+        this.mHomeCallBack = null;
     }
-
-    @Override
-    public void createDataBaseN() {
-        //创建数据库
-        databaseN = Room.databaseBuilder(MyApplication.applicationContext,
-                AppDatabaseN.class, "database_namen")
-                .build();
-
-        GetThreadN getThread = new GetThreadN();
-        getThread.start();
-        
-    }
-
-
-
+    
+    
     public void createDataBase() {
         //创建数据库
         database = Room.databaseBuilder(MyApplication.applicationContext,
                 AppDatabase.class, "database_name")
+                .fallbackToDestructiveMigration()
                 .build();
-
-
     }
 
     @Override
@@ -89,26 +71,7 @@ public class HomePresenterImpl implements IHomePresenter {
         mHomeFragment = homeFragment;
     }
 
-    @Override
-    public void getWeiboForId(String accessToken) {
-        Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
-        IWeiboApi iWeiboApi = retrofit.create(IWeiboApi.class);
-        String wbId = "4746981950102627";
-        Call<Weibo> task = iWeiboApi.getWeiboForId(accessToken, wbId);
-        task.enqueue(new Callback<Weibo>() {
-            @Override
-            public void onResponse(Call<Weibo> call, Response<Weibo> response) {
-                Weibo weibo = response.body();
-            }
-
-            @Override
-            public void onFailure(Call<Weibo> call, Throwable t) {
-
-            }
-        });
-
-
-    }
+   
 
 
     @Override
@@ -120,7 +83,8 @@ public class HomePresenterImpl implements IHomePresenter {
             loadList(accessToken);
         }
     }
-
+    //第一次加载，如果缓存有，先显示缓存里的数据，然后请求数据
+    //当网络请求数据回来后，再刷新列表。
     private void firstLoad(String accessToken) {
         simpleLiveData = new MutableLiveData<>();
         checkCacheAvailable();
@@ -128,13 +92,12 @@ public class HomePresenterImpl implements IHomePresenter {
             @Override
             public void onChanged(@Nullable String text) {
                 if (text.equals(CACHE)) {
-                    if (mCallBack != null) {
-                        mCallBack.onListLoaded(wbList);
+                    if (mHomeCallBack != null) {
+                        mHomeCallBack.onListLoaded(wbList);
                     }
                 }
-                if (text.equals(NOCACHE)) {
-                    loadList(accessToken);
-                }
+                loadList(accessToken);
+
             }
         };
         simpleLiveData.observe(mHomeFragment.getViewLifecycleOwner(), observer);
@@ -143,7 +106,7 @@ public class HomePresenterImpl implements IHomePresenter {
     private void loadList(String accessToken) {
         Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
         IWeiboApi iWeiboApi = retrofit.create(IWeiboApi.class);
-        Call<ResponseBody> task = iWeiboApi.getWeiboList(accessToken);
+        Call<ResponseBody> task = iWeiboApi.getWeiBoList(accessToken);
         task.enqueue(new Callback<ResponseBody>() {
             @SneakyThrows
             @Override
@@ -151,9 +114,9 @@ public class HomePresenterImpl implements IHomePresenter {
                 if (response.code() == 200) {
                     String jsonStr = new String(response.body().bytes());
                     wbList = JSON.parseObject(jsonStr, WeiBoList.class);
-                    if (mCallBack != null) {
+                    if (mHomeCallBack != null) {
                         if (wbList != null) {
-                            mCallBack.onListLoaded(wbList);
+                            mHomeCallBack.onListLoaded(wbList);
                             new UpdateThread().start();
                         }
                     }
@@ -206,15 +169,6 @@ public class HomePresenterImpl implements IHomePresenter {
             } else {
                 
             }
-        }
-    }
-
-
-    public class GetThreadN extends Thread {
-        @Override
-        public void run() {
-            WeiBoCacheN weiBoCacheN = new WeiBoCacheN(0,"AAA");
-           databaseN.weiBoDaoN().insertWeiBo(weiBoCacheN);
         }
     }
 

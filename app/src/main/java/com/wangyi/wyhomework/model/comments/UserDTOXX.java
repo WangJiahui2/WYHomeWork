@@ -1,94 +1,181 @@
 package com.wangyi.wyhomework.model.comments;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
 public class UserDTOXX {
+    @JSONField(name = "id")
     private Integer id;
+    @JSONField(name = "idstr")
     private String idstr;
+    @JSONField(name = "class")
     private Integer classX;
+    @JSONField(name = "screen_name")
     private String screenName;
+    @JSONField(name = "name")
     private String name;
+    @JSONField(name = "province")
     private String province;
+    @JSONField(name = "city")
     private String city;
+    @JSONField(name = "location")
     private String location;
+    @JSONField(name = "description")
     private String description;
+    @JSONField(name = "url")
     private String url;
+    @JSONField(name = "profile_image_url")
     private String profileImageUrl;
+    @JSONField(name = "cover_image_phone")
     private String coverImagePhone;
+    @JSONField(name = "profile_url")
     private String profileUrl;
+    @JSONField(name = "domain")
     private String domain;
+    @JSONField(name = "weihao")
     private String weihao;
+    @JSONField(name = "gender")
     private String gender;
+    @JSONField(name = "followers_count")
     private Integer followersCount;
+    @JSONField(name = "followers_count_str")
     private String followersCountStr;
+    @JSONField(name = "friends_count")
     private Integer friendsCount;
+    @JSONField(name = "pagefriends_count")
     private Integer pagefriendsCount;
+    @JSONField(name = "statuses_count")
     private Integer statusesCount;
+    @JSONField(name = "video_status_count")
     private Integer videoStatusCount;
+    @JSONField(name = "video_play_count")
     private Integer videoPlayCount;
+    @JSONField(name = "favourites_count")
     private Integer favouritesCount;
+    @JSONField(name = "created_at")
     private String createdAt;
+    @JSONField(name = "following")
     private Boolean following;
+    @JSONField(name = "allow_all_act_msg")
     private Boolean allowAllActMsg;
+    @JSONField(name = "geo_enabled")
     private Boolean geoEnabled;
+    @JSONField(name = "verified")
     private Boolean verified;
+    @JSONField(name = "verified_type")
     private Integer verifiedType;
+    @JSONField(name = "remark")
     private String remark;
+    @JSONField(name = "insecurity")
     private InsecurityDTOXX insecurity;
+    @JSONField(name = "ptype")
     private Integer ptype;
+    @JSONField(name = "allow_all_comment")
     private Boolean allowAllComment;
+    @JSONField(name = "avatar_large")
     private String avatarLarge;
+    @JSONField(name = "avatar_hd")
     private String avatarHd;
+    @JSONField(name = "verified_reason")
     private String verifiedReason;
+    @JSONField(name = "verified_trade")
     private String verifiedTrade;
+    @JSONField(name = "verified_reason_url")
     private String verifiedReasonUrl;
+    @JSONField(name = "verified_source")
     private String verifiedSource;
+    @JSONField(name = "verified_source_url")
     private String verifiedSourceUrl;
+    @JSONField(name = "verified_state")
     private Integer verifiedState;
+    @JSONField(name = "verified_level")
     private Integer verifiedLevel;
+    @JSONField(name = "verified_type_ext")
     private Integer verifiedTypeExt;
+    @JSONField(name = "has_service_tel")
     private Boolean hasServiceTel;
+    @JSONField(name = "verified_reason_modified")
     private String verifiedReasonModified;
+    @JSONField(name = "verified_contact_name")
     private String verifiedContactName;
+    @JSONField(name = "verified_contact_email")
     private String verifiedContactEmail;
+    @JSONField(name = "verified_contact_mobile")
     private String verifiedContactMobile;
+    @JSONField(name = "follow_me")
     private Boolean followMe;
+    @JSONField(name = "like")
     private Boolean like;
+    @JSONField(name = "like_me")
     private Boolean likeMe;
+    @JSONField(name = "online_status")
     private Integer onlineStatus;
+    @JSONField(name = "bi_followers_count")
     private Integer biFollowersCount;
+    @JSONField(name = "lang")
     private String lang;
+    @JSONField(name = "star")
     private Integer star;
+    @JSONField(name = "mbtype")
     private Integer mbtype;
+    @JSONField(name = "mbrank")
     private Integer mbrank;
+    @JSONField(name = "svip")
     private Integer svip;
+    @JSONField(name = "block_word")
     private Integer blockWord;
+    @JSONField(name = "block_app")
     private Integer blockApp;
+    @JSONField(name = "chaohua_ability")
     private Integer chaohuaAbility;
+    @JSONField(name = "brand_ability")
     private Integer brandAbility;
+    @JSONField(name = "nft_ability")
     private Integer nftAbility;
+    @JSONField(name = "credit_score")
     private Integer creditScore;
+    @JSONField(name = "user_ability")
     private Integer userAbility;
+    @JSONField(name = "urank")
     private Integer urank;
+    @JSONField(name = "story_read_state")
     private Integer storyReadState;
+    @JSONField(name = "verified_detail")
     private VerifiedDetailDTOX verifiedDetail;
+    @JSONField(name = "vclub_member")
     private Integer vclubMember;
+    @JSONField(name = "is_teenager")
     private Integer isTeenager;
+    @JSONField(name = "is_guardian")
     private Integer isGuardian;
+    @JSONField(name = "is_teenager_list")
     private Integer isTeenagerList;
+    @JSONField(name = "pc_new")
     private Integer pcNew;
+    @JSONField(name = "special_follow")
     private Boolean specialFollow;
+    @JSONField(name = "planet_video")
     private Integer planetVideo;
+    @JSONField(name = "video_mark")
     private Integer videoMark;
+    @JSONField(name = "live_status")
     private Integer liveStatus;
+    @JSONField(name = "user_ability_extend")
     private Integer userAbilityExtend;
+    @JSONField(name = "status_total_counter")
     private StatusTotalCounterDTOXX statusTotalCounter;
+    @JSONField(name = "video_total_counter")
     private VideoTotalCounterDTOXX videoTotalCounter;
+    @JSONField(name = "brand_account")
     private Integer brandAccount;
+    @JSONField(name = "hongbaofei")
     private Integer hongbaofei;
+    @JSONField(name = "tab_manage")
     private String tabManage;
+    @JSONField(name = "reward_status")
     private Integer rewardStatus;
 }

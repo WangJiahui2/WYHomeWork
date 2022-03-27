@@ -134,6 +134,8 @@ public class LoginActivity extends AppCompatActivity {
     private void initListener() {
         mNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
+                // TODO: 2022/3/26 这里可以写刷新的逻辑 
+                //只有一个界面，不用切换了，但是要加载刷新的ui。
                 LogUtils.d(this, "切换到首页");
                 switchFragment(mHomeFragment);
             } else if (item.getItemId() == R.id.message) {

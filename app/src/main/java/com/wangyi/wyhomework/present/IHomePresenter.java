@@ -10,12 +10,9 @@ public interface IHomePresenter extends IBasePresenter<IHomeCallBack> {
      * 获取当前账户微博
      */
     void getWeiBoList(String accessToken);
-
-    void getWeiboForId(String accessToken);
+    
 
     void createDataBase();
-
-    void createDataBaseN();
     
     void registerLifecycle(HomeFragment homeFragment);
 }

@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class VideoTotalCounterDTO {
     @JSONField(name = "play_cnt")
-    private Integer playCnt;
+    private String playCnt;
 }

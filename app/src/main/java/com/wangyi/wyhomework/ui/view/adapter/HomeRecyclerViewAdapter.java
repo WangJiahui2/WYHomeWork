@@ -1,6 +1,7 @@
 package com.wangyi.wyhomework.ui.view.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,21 +10,24 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.wangyi.wyhomework.R;
 import com.wangyi.wyhomework.common.CalculateTime;
 import com.wangyi.wyhomework.model.weibolist.StatusesDTO;
 import com.wangyi.wyhomework.model.weibolist.WeiBoList;
 import com.wangyi.wyhomework.utils.ParseHref;
-import com.wangyi.wyhomework.utils.ReplaceImageSize;
 import com.wangyi.wyhomework.utils.SizeUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -58,15 +62,27 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         StatusesDTO statusesDTO = mData.get(position);
         if (holder instanceof OriginalWBInnerHolder) {
+            OriginalWBInnerHolder originalWBInnerHolder =(OriginalWBInnerHolder) holder;
             try {
-                ((OriginalWBInnerHolder) holder).setData(statusesDTO,position);
+                originalWBInnerHolder.setData(statusesDTO,position);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            originalWBInnerHolder.weiboContentPic.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    mItemClickListener.onOriginalItemClick(v, statusesDTO);
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
+                }
+            });
+
+            originalWBInnerHolder.weiboContentTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
                 }
             });
         } else {
@@ -158,7 +174,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             //利用Glide加载图片需要context
             Context context = itemView.getContext();
             String picUrl = statusesDTO.getUser().getProfileImageUrl();
-            if (!picUrl.isEmpty()) {
+            if (picUrl != null && !picUrl.isEmpty()) {
                 Glide.with(context).load(picUrl).into(this.avatarIV);
             } else {
                 avatarIV.setImageResource(R.mipmap.ic_launcher_round);
@@ -279,7 +295,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             //利用Glide加载图片需要context
             Context context = itemView.getContext();
             String picUrl = statusesDTO.getUser().getProfileImageUrl();
-            if (!picUrl.isEmpty()) {
+            if (picUrl != null && !picUrl.isEmpty()) {
                 Glide.with(context).load(picUrl).into(this.avatarIV);
             } else {
                 avatarIV.setImageResource(R.mipmap.ic_launcher_round);

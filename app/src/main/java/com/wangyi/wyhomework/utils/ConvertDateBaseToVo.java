@@ -58,8 +58,10 @@ public class ConvertDateBaseToVo {
     private List<PicUrlsDTO> convertToPicUrlsDTO(List<WeiBoCache.Content.PicUrls> picUrls) {
         if (picUrls != null && picUrls.size() > 0){
             List<PicUrlsDTO> picUrlsDTOList = new ArrayList<>(picUrls.size());
+            PicUrlsDTO picUrlsDTO = new PicUrlsDTO();
             for (int i = 0; i < picUrls.size(); i++) {
-                picUrlsDTOList.get(i).setThumbnailPic(picUrls.get(i).thumbnailPic);
+                picUrlsDTO.setThumbnailPic(picUrls.get(i).thumbnailPic);
+                picUrlsDTOList.add(picUrlsDTO);
             }
             return picUrlsDTOList;
         }else{
@@ -69,27 +71,35 @@ public class ConvertDateBaseToVo {
 
     private UserDTOX convertToUserDTOX(WeiBoCache.Content.User user) {
         UserDTOX userDTO = new UserDTOX();
-        userDTO.setId(user.id);
-        userDTO.setName(user.name);
-        userDTO.setDescription(user.description);
-        userDTO.setProfileImageUrl(user.profileImageUrl);
+        if (user != null){
+            userDTO.setId(user.id);
+            userDTO.setName(user.name);
+            userDTO.setDescription(user.description);
+            userDTO.setProfileImageUrl(user.profileImageUrl);
+        }
         return userDTO;
 
     }
 
     private UserDTO convertToUserDTO(WeiBoCache.Content.User user) {
         UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.id);
-        userDTO.setName(user.name);
-        userDTO.setDescription(user.description);
-        userDTO.setProfileImageUrl(user.profileImageUrl);
+        if (user != null){
+            userDTO.setId(user.id);
+            userDTO.setName(user.name);
+            userDTO.setDescription(user.description);
+            userDTO.setProfileImageUrl(user.profileImageUrl);
+        }
         return userDTO;
     }
 
     private List<PicUrlsDTOX> convertToPicUrlsDTOX(List<WeiBoCache.Content.PicUrls> picUrls) {
-        List<PicUrlsDTOX> picUrlsDTOXList = new ArrayList<>(picUrls.size());
-        for (int i = 0; i < picUrls.size(); i++) {
-            picUrlsDTOXList.get(i).setThumbnailPic(picUrls.get(i).thumbnailPic);
+        List<PicUrlsDTOX> picUrlsDTOXList = new ArrayList<>();
+        PicUrlsDTOX picUrlsDTOX = new PicUrlsDTOX();
+        if (picUrls != null && !picUrls.isEmpty()){
+            for (int i = 0; i < picUrls.size(); i++) {
+                picUrlsDTOX.setThumbnailPic(picUrls.get(i).thumbnailPic);
+                picUrlsDTOXList.add(picUrlsDTOX);
+            }
         }
         return picUrlsDTOXList;
     }

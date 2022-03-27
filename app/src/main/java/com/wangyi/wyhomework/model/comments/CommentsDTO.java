@@ -1,5 +1,7 @@
 package com.wangyi.wyhomework.model.comments;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.List;
 
 import lombok.Data;
@@ -8,24 +10,36 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CommentsDTO {
-    //评论时间
+    @JSONField(name = "created_at")
     private String createdAt;
-    //id
-    private String id;
-    private String rootid;
+    @JSONField(name = "id")
+    private Long id;
+    @JSONField(name = "rootid")
+    private Long rootid;
+    @JSONField(name = "rootidstr")
     private String rootidstr;
+    @JSONField(name = "floor_number")
     private Integer floorNumber;
+    @JSONField(name = "text")
     private String text;
-    //回复
+    @JSONField(name = "disable_reply")
     private Integer disableReply;
+    @JSONField(name = "restrictOperate")
     private Integer restrictOperate;
-    private List<CommentBadgeDTO> commentBadge;
-    //评论人信息
+    @JSONField(name = "comment_badge")
+    private List<CommentBadgeDTOX> commentBadge;
+    @JSONField(name = "user")
     private UserDTOX user;
+    @JSONField(name = "mid")
     private String mid;
+    @JSONField(name = "idstr")
     private String idstr;
+    @JSONField(name = "status")
     private StatusDTOX status;
-    private ReplyCommentDTO replyComment;
+    @JSONField(name = "readtimetype")
     private String readtimetype;
+    @JSONField(name = "reply_comment")
+    private ReplyCommentDTO replyComment;
+    @JSONField(name = "reply_original_text")
     private String replyOriginalText;
 }

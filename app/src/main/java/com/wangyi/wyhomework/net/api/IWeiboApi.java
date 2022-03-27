@@ -1,12 +1,13 @@
 package com.wangyi.wyhomework.net.api;
 
 import com.wangyi.wyhomework.model.show.Weibo;
-import com.wangyi.wyhomework.model.weibolist.WeiBoList;
 
 import okhttp3.ResponseBody;
-import okhttp3.internal.http.RealResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface IWeiboApi {
@@ -14,11 +15,22 @@ public interface IWeiboApi {
 
 
     @GET("2/statuses/show.json")
-    Call<Weibo> getWeiboForId(@Query("access_token") String accessToken,
+    Call<ResponseBody> getWeiBoForId(@Query("access_token") String accessToken,
                               @Query("id") String id);
 
     @GET("2/statuses/home_timeline.json")
-    Call<ResponseBody> getWeiboList(@Query("access_token") String accessToken);
+    Call<ResponseBody> getWeiBoList(@Query("access_token") String accessToken);
 
+    /**
+     * 用户分享到微博的文本内容，必须做URLencode处理
+     * 
+     * @param accessToken
+     * @param status
+     * @return
+     */
+    @POST("2/statuses/share.json")
+    Call<ResponseBody> postWeiBo(@Query("access_token") String accessToken
+        , @Field("status") String status);
+    
     
 }

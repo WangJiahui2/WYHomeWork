@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class InsecurityDTO {
-    @JSONField(name = "sexual_content")
-    private Boolean sexualContent;
+public class ActionlogDTOX {
+    @JSONField(name = "act_code")
+    private String actCode;
+    @JSONField(name = "ext")
+    private String ext;
 }

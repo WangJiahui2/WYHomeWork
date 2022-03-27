@@ -58,7 +58,7 @@
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/account_info"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
@@ -72,7 +72,7 @@
             android:layout_marginBottom="4dp"
             android:text="K50第三款颜色解锁：幽芒\n献给春天，献给雨水，献给你"
             android:textColor="@color/black"
-            android:textSize="12sp" 
+            android:textSize="12sp"
             />
 
         <ImageView
@@ -90,10 +90,57 @@
             android:layout_height="wrap_content"
             android:columnWidth="80dp"
             android:numColumns="3"
-            android:stretchMode="none" 
+            android:stretchMode="none"
             android:visibility="gone"
             android:layout_below="@id/weibo_content"/>
 
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/forward_content_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/content"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorGrey"
+        android:visibility="gone"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@id/forward_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="卢伟冰"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/forward_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/forward_name"
+            android:textColor="@color/black"
+            android:text="k50"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/forward_one_pic"
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:visibility="gone"
+            android:layout_below="@+id/forward_content_tv" />
+
+
+        <com.wangyi.wyhomework.ui.view.adapter.MyGridView
+            android:id="@+id/forward_weibo_gridview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:columnWidth="80dp"
+            android:numColumns="3"
+            android:stretchMode="none"
+            android:visibility="gone"
+            android:layout_below="@id/forward_content_tv"/>
 
     </RelativeLayout>
 
@@ -178,5 +225,12 @@
 
 
     </RelativeLayout>
+    
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+        
+   
 
 </RelativeLayout>

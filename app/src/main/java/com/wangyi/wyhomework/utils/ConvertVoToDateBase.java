@@ -1,12 +1,11 @@
 package com.wangyi.wyhomework.utils;
 
-import androidx.room.util.StringUtil;
-
 import com.wangyi.wyhomework.cache.WeiBoCache;
 import com.wangyi.wyhomework.model.weibolist.PicUrlsDTO;
 import com.wangyi.wyhomework.model.weibolist.PicUrlsDTOX;
 import com.wangyi.wyhomework.model.weibolist.RetweetedStatusDTO;
 import com.wangyi.wyhomework.model.weibolist.StatusesDTO;
+import com.wangyi.wyhomework.model.weibolist.UserDTO;
 import com.wangyi.wyhomework.model.weibolist.UserDTOX;
 import com.wangyi.wyhomework.model.weibolist.WeiBoList;
 
@@ -33,11 +32,22 @@ public class ConvertVoToDateBase {
             content.source = statusesDTO.getSource();
             content.picUrls = convertToPicUrls(statusesDTO.getPicUrls());
             content.retweetedStatus = convertToRetweeted(statusesDTO.getRetweetedStatus());
-
+            content.user = convertToUser(statusesDTO.getUser());
             contents.add(content);
         }
         weiBoCache.contents = contents;
         return weiBoCache;
+    }
+
+    private WeiBoCache.Content.User convertToUser(UserDTO user) {
+        WeiBoCache.Content.User userr = new WeiBoCache.Content.User();
+        if (user != null){
+            userr.name = user.getName();
+            userr.profileImageUrl = user.getProfileImageUrl();
+            userr.description = user.getDescription();
+            userr.id = user.getId();
+        }
+        return userr;
     }
 
     private WeiBoCache.Content.Retweeted convertToRetweeted(RetweetedStatusDTO retweetedStatus) {
@@ -48,14 +58,14 @@ public class ConvertVoToDateBase {
             retweeted.source = retweetedStatus.getSource();
             retweeted.text = retweetedStatus.getText();
             retweeted.picUrls = convertToPicUrlss(retweetedStatus.getPicUrls());
-            retweeted.user = convertToUser(retweetedStatus.getUser());
+            retweeted.user = convertToUserX(retweetedStatus.getUser());
             return retweeted;
         } else {
             return null;
         }
     }
 
-    private WeiBoCache.Content.User convertToUser(UserDTOX user) {
+    private WeiBoCache.Content.User convertToUserX(UserDTOX user) {
         WeiBoCache.Content.User userr = new WeiBoCache.Content.User();
         userr.id = user.getId();
         userr.description = user.getDescription();
@@ -71,11 +81,13 @@ public class ConvertVoToDateBase {
      * @return
      */
     private List<WeiBoCache.Content.PicUrls> convertToPicUrlss(List<PicUrlsDTO> picUrls) {
-        List<WeiBoCache.Content.PicUrls> picUrl = new ArrayList<>(picUrls.size());
+        List<WeiBoCache.Content.PicUrls> picUrl = new ArrayList<>();
         WeiBoCache.Content.PicUrls urls = new WeiBoCache.Content.PicUrls();
-        for (int i = 0; i < picUrls.size(); i++) {
-            urls.thumbnailPic = picUrls.get(i).getThumbnailPic();
-            picUrl.add(urls);
+        if (picUrls != null && !picUrls.isEmpty()){
+            for (int i = 0; i < picUrls.size(); i++) {
+                urls.thumbnailPic = picUrls.get(i).getThumbnailPic();
+                picUrl.add(urls);
+            }
         }
         return picUrl;
     }

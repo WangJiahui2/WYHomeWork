@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class CommentBadgeDTO {
+public class CommentBadgeDTOX {
     @JSONField(name = "pic_url")
     private String picUrl;
     @JSONField(name = "name")
@@ -15,7 +15,7 @@ public class CommentBadgeDTO {
     @JSONField(name = "length")
     private Double length;
     @JSONField(name = "actionlog")
-    private ActionlogDTO actionlog;
+    private ActionlogDTOX actionlog;
     @JSONField(name = "scheme")
     private String scheme;
 }
