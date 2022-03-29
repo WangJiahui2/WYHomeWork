@@ -146,13 +146,16 @@ public class HomeFragment extends BaseFragment implements IHomeCallBack, HomeRec
                 photoShowDialogWB.show();
                 break;
             case R.id.weibo_content:
-//                Intent intent = new Intent(getContext(), WeiBoActivity.class);
-//                intent.putExtra("id",itemBean.getId());
-//                startActivity(intent);
+            case R.id.relate_content:
+                Intent intent = new Intent(getContext(), WeiBoActivity.class);
+                intent.putExtra("id",itemBean.getId());
+                startActivity(intent);
                 break;
             case R.id.avatar:
                 PhotoShowDialog photoShowDialogAT = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getUser().getAvatarLarge()),0);
                 photoShowDialogAT.show();
+                break;
+                
                 
 
 

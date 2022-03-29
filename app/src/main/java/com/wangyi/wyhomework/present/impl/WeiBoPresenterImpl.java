@@ -1,14 +1,12 @@
 package com.wangyi.wyhomework.present.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.wangyi.wyhomework.model.show.Weibo;
-import com.wangyi.wyhomework.model.weibolist.StatusesDTO;
+import com.wangyi.wyhomework.model.comments.Comments;
 import com.wangyi.wyhomework.net.api.IWeiboApi;
 import com.wangyi.wyhomework.present.IWeiBoPresenter;
 import com.wangyi.wyhomework.ui.callback.IWeiBoCallBack;
 import com.wangyi.wyhomework.utils.RetrofitManager;
 
-import java.util.Arrays;
 
 import lombok.SneakyThrows;
 import okhttp3.ResponseBody;
@@ -26,16 +24,23 @@ public class WeiBoPresenterImpl implements IWeiBoPresenter {
     public void getWeiBoForId(String accessToken,String id) {
         Retrofit retrofit = RetrofitManager.getInstance().getRetrofit();
         IWeiboApi iWeiboApi = retrofit.create(IWeiboApi.class);
-        String wbId = "4746981950102627";
-        Call<ResponseBody> task = iWeiboApi.getWeiBoForId(accessToken, wbId);
+        Call<ResponseBody> task = iWeiboApi.getWeiBoForId(accessToken, id);
         task.enqueue(new Callback<ResponseBody>() {
             @SneakyThrows
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 assert response.body() != null;
-                String res = Arrays.toString(response.body().bytes());
-                StatusesDTO dto = JSON.parseObject(res, StatusesDTO.class);
-                mWeiBoCallBack.onWeiBoLoaded(dto);
+//                String body = Arrays.toString(response.body().bytes());
+
+                String res = new String(response.body().bytes());
+
+                
+//                String body = JSONObject.toJSONString(response);
+//                Object parse1 = JSON.parse(body);
+//                String s = parse1.toString();
+//                Comments comments = JSONObject.parseObject(s, Comments.class);
+                Comments comments = JSON.parseObject(res, Comments.class);
+                mWeiBoCallBack.onWeiBoLoaded(comments);
             }
 
             @Override

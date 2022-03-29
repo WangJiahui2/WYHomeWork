@@ -1,4 +1,4 @@
-package com.wangyi.wyhomework.ui.view.adapter;
+package com.wangyi.wyhomework.common;
 
 import android.content.Context;
 import android.util.AttributeSet;

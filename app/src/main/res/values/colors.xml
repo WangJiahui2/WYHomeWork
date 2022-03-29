@@ -18,4 +18,5 @@
     <color name="colorPageBg">#EFEEEE</color>
     <color name="colorEEEEEE">#EFEEEE</color>
     <color name="colorTextHint">#D5D4D4</color>
+    <color name="nameColor">#FF5722</color>
 </resources>

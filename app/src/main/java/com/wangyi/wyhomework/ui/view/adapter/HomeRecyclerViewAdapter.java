@@ -1,33 +1,31 @@
 package com.wangyi.wyhomework.ui.view.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.wangyi.wyhomework.R;
 import com.wangyi.wyhomework.common.CalculateTime;
+import com.wangyi.wyhomework.common.MyGridView;
 import com.wangyi.wyhomework.model.weibolist.StatusesDTO;
 import com.wangyi.wyhomework.model.weibolist.WeiBoList;
 import com.wangyi.wyhomework.utils.ParseHref;
 import com.wangyi.wyhomework.utils.SizeUtils;
 
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +45,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView;
-        RecyclerView.ViewHolder holder = null;
+        RecyclerView.ViewHolder holder;
         if (viewType == ORIGINAL_WB) {
             itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_original_weibo_content, parent, false);
             holder = new OriginalWBInnerHolder(itemView);
@@ -93,17 +91,46 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                 }
             });
+            originalWBInnerHolder.relateContentRl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
+                }
+            });
         } else {
+            ForWardWBInnerHolder forWardWBInnerHolder = (ForWardWBInnerHolder) holder;
             try {
-                ((ForWardWBInnerHolder) holder).setData(statusesDTO);
+                forWardWBInnerHolder.setData(statusesDTO);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            forWardWBInnerHolder.avatarIV.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    mItemClickListener.onForwardItemClick(v, statusesDTO);
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
+                }
+            });
+
+            forWardWBInnerHolder.weiboContentTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
+                }
+            });
+
+            forWardWBInnerHolder.relateContentRl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mItemClickListener != null){
+                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                    }
                 }
             });
         }
@@ -171,6 +198,9 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         @BindView(R.id.goods_number)
         public TextView goodsTv;
+
+        @BindView(R.id.relate_content)
+        public RelativeLayout relateContentRl;
 
         public OriginalWBInnerHolder(@NonNull View itemView) {
             super(itemView);
@@ -276,8 +306,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         public TextView forwardNameTV;
 
 
-        @BindView(R.id.forward_content_tv)
-        public TextView forwardContentTV;
+//        @BindView(R.id.forward_content_tv)
+//        public TextView forwardContentTV;
 
         @BindView(R.id.forward_one_pic)
         public ImageView forwardPicIV;
@@ -293,6 +323,9 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
 
         @BindView(R.id.goods_number)
         public TextView goodsTv;
+        
+        @BindView(R.id.relate_content)
+        public RelativeLayout relateContentRl;
 
         public ForWardWBInnerHolder(@NonNull View itemView) {
             super(itemView);
@@ -323,8 +356,9 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             weiboContentTV.setText(statusesDTO.getText());
 
             //接下来为转发的原微博内容
-            forwardNameTV.setText("@" + statusesDTO.getRetweetedStatus().getUser().getName() + ":");
-            forwardContentTV.setText(statusesDTO.getRetweetedStatus().getText());
+//            forwardNameTV.setText("@" + statusesDTO.getRetweetedStatus().getUser().getName() + ":");
+            forwardNameTV.setText(MessageFormat.format(context.getString(R.string.forward_name_content), statusesDTO.getRetweetedStatus().getUser().getName(),statusesDTO.getRetweetedStatus().getText()));
+//            forwardContentTV.setText(statusesDTO.getRetweetedStatus().getText());
             
             if (statusesDTO.getPicUrls().size() > 1){
                 ArrayList<String> contentPicList = new ArrayList<>(statusesDTO.getPicUrls().size());

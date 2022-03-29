@@ -17,7 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/netease" />
 
         <TextView
             android:id="@+id/send_name"
@@ -26,7 +26,7 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/avatar"
             android:text="雷军"
-            android:textColor="@color/black"
+            android:textColor="@color/nameColor"
             android:textSize="15sp" />
 
         <TextView
@@ -90,24 +90,24 @@
                 android:text="卢伟冰"
                 android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/forward_content_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/forward_name"
-                android:textColor="@color/black"
-                android:text="k50"
-                android:textSize="12sp" />
+<!--            <TextView-->
+<!--                android:id="@+id/forward_content_tv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_toRightOf="@+id/forward_name"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:text="k50"-->
+<!--                android:textSize="12sp" />-->
 
             <ImageView
                 android:id="@+id/forward_one_pic"
                 android:layout_width="300dp"
                 android:layout_height="180dp"
                 android:visibility="gone"
-                android:layout_below="@+id/forward_content_tv" />
+                android:layout_below="@+id/forward_name" />
 
 
-            <com.wangyi.wyhomework.ui.view.adapter.MyGridView
+            <com.wangyi.wyhomework.common.MyGridView
                 android:id="@+id/forward_weibo_gridview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -63,13 +63,13 @@ public class StatusDTO {
     @JSONField(name = "annotations")
     private List<AnnotationsDTO> annotations;
     @JSONField(name = "reposts_count")
-    private Integer repostsCount;
+    private String repostsCount;
     @JSONField(name = "comments_count")
-    private Integer commentsCount;
+    private String commentsCount;
     @JSONField(name = "reprint_cmt_count")
     private Integer reprintCmtCount;
     @JSONField(name = "attitudes_count")
-    private Integer attitudesCount;
+    private String attitudesCount;
     @JSONField(name = "pending_approval_count")
     private Integer pendingApprovalCount;
     @JSONField(name = "isLongText")

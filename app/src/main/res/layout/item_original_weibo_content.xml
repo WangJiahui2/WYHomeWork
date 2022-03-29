@@ -26,7 +26,7 @@
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/avatar"
             android:text="雷军"
-            android:textColor="@color/black"
+            android:textColor="@color/nameColor"
             android:textSize="15sp" />
 
         <TextView
@@ -84,7 +84,7 @@
             android:layout_below="@id/weibo_content"
             android:transitionName="share"/>
 
-        <com.wangyi.wyhomework.ui.view.adapter.MyGridView
+        <com.wangyi.wyhomework.common.MyGridView
             android:id="@+id/weibo_gridview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

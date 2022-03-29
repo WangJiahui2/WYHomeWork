@@ -24,6 +24,9 @@
 
         <activity android:name=".ui.view.activity.WriteWeiBoActivity">
         </activity>
+
+        <activity android:name=".ui.view.activity.WeiBoActivity">
+        </activity>
     </application>
 
 </manifest>

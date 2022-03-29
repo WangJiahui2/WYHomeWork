@@ -6,230 +6,265 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingTop="5dp">
-
+    
     <RelativeLayout
-        android:id="@+id/account_info"
+        android:id="@+id/loading_rl"
         android:layout_width="match_parent"
-        android:layout_height="42dp">
-
-        <ImageView
-            android:id="@+id/avatar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        
+        <com.wangyi.wyhomework.common.LoadingView
+            android:id="@+id/loading_view"
+            android:layout_width="33dp"
+            android:layout_height="33dp" 
             />
 
         <TextView
-            android:id="@+id/send_name"
+            android:layout_below="@+id/loading_view"
+            android:paddingTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/avatar"
-            android:text="雷军"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/send_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/send_name"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/avatar"
-            android:text="8分钟前"
-            android:textColor="@color/black"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/send_iphone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/send_name"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/send_time"
-            android:text="来自"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            android:clickable="true"/>
-
+            android:layout_marginTop="10dp"
+            android:text="加载中..." />
     </RelativeLayout>
-
-
+    
     <RelativeLayout
-        android:id="@+id/content"
+        android:id="@+id/weibo_content_rl"
+        android:layout_below="@+id/loading_rl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/account_info"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        >
-
-        <TextView
-            android:id="@+id/weibo_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="K50第三款颜色解锁：幽芒\n献给春天，献给雨水，献给你"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            />
-
-        <ImageView
-            android:id="@+id/weibo_one_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/weibo_content"
-            android:transitionName="share"/>
-
-        <com.wangyi.wyhomework.ui.view.adapter.MyGridView
-            android:id="@+id/weibo_gridview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnWidth="80dp"
-            android:numColumns="3"
-            android:stretchMode="none"
-            android:visibility="gone"
-            android:layout_below="@id/weibo_content"/>
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/forward_content_rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/content"
-        android:layout_marginTop="5dp"
-        android:background="@color/colorGrey"
-        android:visibility="gone"
-        android:paddingLeft="20dp">
-
-        <TextView
-            android:id="@id/forward_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="卢伟冰"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/forward_content_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/forward_name"
-            android:textColor="@color/black"
-            android:text="k50"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:id="@+id/forward_one_pic"
-            android:layout_width="300dp"
-            android:layout_height="180dp"
-            android:visibility="gone"
-            android:layout_below="@+id/forward_content_tv" />
-
-
-        <com.wangyi.wyhomework.ui.view.adapter.MyGridView
-            android:id="@+id/forward_weibo_gridview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:columnWidth="80dp"
-            android:numColumns="3"
-            android:stretchMode="none"
-            android:visibility="gone"
-            android:layout_below="@id/forward_content_tv"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relate_content"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@+id/content"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <RelativeLayout
-            android:id="@+id/forward_rl"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="40dp">
+            android:id="@+id/account_info"
+            android:layout_width="match_parent"
+            android:layout_height="42dp">
 
             <ImageView
-                android:layout_width="14dp"
-                android:layout_height="12dp"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/forward" />
+                android:id="@+id/avatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                />
 
             <TextView
-                android:id="@+id/forward_number"
+                android:id="@+id/send_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="3"
-                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/avatar"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/send_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/send_name"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/avatar"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/send_iphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/send_name"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/send_time"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                android:paddingBottom="1dp"/>
+                android:clickable="true"/>
+
         </RelativeLayout>
 
 
         <RelativeLayout
-            android:id="@+id/comments_rl"
-            android:layout_width="33dp"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true">
-
-            <ImageView
-                android:id="@+id/comments_icon"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/comment" />
-
-            <TextView
-                android:id="@+id/comments_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="129"
-                android:textColor="@color/black"
-                android:layout_alignParentRight="true"
-                android:textSize="10sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/goods_rl"
-            android:layout_width="wrap_content"
+            android:id="@+id/content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="40dp">
-
-            <ImageView
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:src="@mipmap/good" />
+            android:layout_below="@+id/account_info"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            >
 
             <TextView
-                android:id="@+id/goods_number"
+                android:id="@+id/weibo_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                />
+
+            <ImageView
+                android:id="@+id/weibo_one_pic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="399"
+                android:visibility="gone"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/weibo_content"
+                android:transitionName="share"/>
+
+            <com.wangyi.wyhomework.common.MyGridView
+                android:id="@+id/weibo_gridview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnWidth="80dp"
+                android:numColumns="3"
+                android:stretchMode="none"
+                android:visibility="gone"
+                android:layout_below="@id/weibo_content"/>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/forward_content_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorGrey"
+            android:visibility="gone"
+            android:paddingLeft="20dp">
+
+            <TextView
+                android:id="@id/forward_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="10sp" />
+                android:text="卢伟冰"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/forward_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/forward_name"
+                android:textColor="@color/black"
+                android:text="k50"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/forward_one_pic"
+                android:layout_width="300dp"
+                android:layout_height="180dp"
+                android:visibility="gone"
+                android:layout_below="@+id/forward_content_tv" />
+
+
+            <com.wangyi.wyhomework.common.MyGridView
+                android:id="@+id/forward_weibo_gridview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnWidth="80dp"
+                android:numColumns="3"
+                android:stretchMode="none"
+                android:visibility="gone"
+                android:layout_below="@id/forward_content_tv"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relate_content"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_below="@+id/content"
+            android:gravity="center_vertical"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/forward_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="40dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="12dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/forward" />
+
+                <TextView
+                    android:id="@+id/weibo_forward_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="3"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:paddingBottom="1dp"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/comments_rl"
+                android:layout_width="33dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/comments_icon"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/comment" />
+
+                <TextView
+                    android:id="@+id/weibo_comments_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="129"
+                    android:textColor="@color/black"
+                    android:layout_alignParentRight="true"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/goods_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40dp">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@mipmap/good" />
+
+                <TextView
+                    android:id="@+id/weibo_goods_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="399"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+            </RelativeLayout>
+
+
         </RelativeLayout>
 
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weibo_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/relate_content"
+            android:layout_marginTop="5dp"/>
+        
     </RelativeLayout>
     
-    
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
         
    
 

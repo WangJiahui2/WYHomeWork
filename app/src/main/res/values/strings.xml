@@ -7,4 +7,5 @@
     <string name="text_network_error_tips">网络出错，请点击重试...</string>
     <string name="text_loading_tips">玩命加载中...</string>
     <string name="send_weibo_for_iphone">来自%s</string>
+    <string name="forward_name_content">@{0}: {1}</string>
 </resources>

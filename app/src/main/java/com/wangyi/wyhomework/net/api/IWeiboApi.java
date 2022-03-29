@@ -14,7 +14,7 @@ public interface IWeiboApi {
     
 
 
-    @GET("2/statuses/show.json")
+    @GET("2/comments/show.json")
     Call<ResponseBody> getWeiBoForId(@Query("access_token") String accessToken,
                               @Query("id") String id);
 

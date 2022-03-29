@@ -40,15 +40,12 @@ public class LoginActivity extends AppCompatActivity {
     public static String mAccessToken;
     private long  expiresTime;
     private ACache aCache;
+    private int initSdkTimes = 0;
 
     @BindView(R.id.main_navigation_bar)
     public BottomNavigationView mNavigationView;
 
     private HomeFragment mHomeFragment;
-
-    private MessageFragment mMessageFragment;
-
-    private AccountFragment mAccountFragment;
 
     private FragmentManager mFragmentManager;
 
@@ -64,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initACache() {
         aCache = ACache.get(this);// 默认选择的路径是new File(context.getCacheDir(),// "ACache")
-        // String path = getExternalCacheDir().getAbsolutePath();
-        // aCache = ACache.get(new File(path));//设置存储路径用于手动清空缓存使用，
     }
 
 
@@ -93,7 +88,10 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onInitFailure(Exception e) {
                             // SDK初始化失败回调
-
+                            if (initSdkTimes < 5){
+                                initSdk();
+                                initSdkTimes++;
+                            }
                         }
                     }
             );
@@ -134,25 +132,15 @@ public class LoginActivity extends AppCompatActivity {
     private void initListener() {
         mNavigationView.setOnNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
-                // TODO: 2022/3/26 这里可以写刷新的逻辑 
-                //只有一个界面，不用切换了，但是要加载刷新的ui。
                 LogUtils.d(this, "切换到首页");
                 switchFragment(mHomeFragment);
-            } else if (item.getItemId() == R.id.message) {
-                LogUtils.i(this, "切换到消息");
-                switchFragment(mMessageFragment);
-            } else if (item.getItemId() == R.id.now) {
-                LogUtils.w(this, "切换到我");
-                switchFragment(mAccountFragment);
-            }
+            } 
             return true;
         });
     }
 
     private void initFragments() {
         mHomeFragment = new HomeFragment();
-        mMessageFragment = new MessageFragment();
-        mAccountFragment = new AccountFragment();
         mFragmentManager = getSupportFragmentManager();
         switchFragment(mHomeFragment);
     }
@@ -178,7 +166,6 @@ public class LoginActivity extends AppCompatActivity {
             fragmentTransaction.hide(lastOneFragment);
         }
         lastOneFragment = targetFragment;
-        //fragmentTransaction.replace(R.id.main_page_container,targetFragment);
         fragmentTransaction.commitAllowingStateLoss();
     }
 
