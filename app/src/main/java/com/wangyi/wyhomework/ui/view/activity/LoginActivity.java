@@ -22,9 +22,7 @@ import com.wangyi.wyhomework.R;
 import com.wangyi.wyhomework.common.BaseFragment;
 import com.wangyi.wyhomework.utils.ACache;
 import com.wangyi.wyhomework.utils.LogUtils;
-import com.wangyi.wyhomework.ui.view.fragment.AccountFragment;
 import com.wangyi.wyhomework.ui.view.fragment.HomeFragment;
-import com.wangyi.wyhomework.ui.view.fragment.MessageFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

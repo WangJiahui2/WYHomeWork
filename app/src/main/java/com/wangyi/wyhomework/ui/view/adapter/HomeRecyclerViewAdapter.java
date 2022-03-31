@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wangyi.wyhomework.R;
-import com.wangyi.wyhomework.common.CalculateTime;
+import com.wangyi.wyhomework.utils.CalculateTime;
 import com.wangyi.wyhomework.common.MyGridView;
 import com.wangyi.wyhomework.model.weibolist.StatusesDTO;
 import com.wangyi.wyhomework.model.weibolist.WeiBoList;
@@ -70,7 +70,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -79,7 +79,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -87,7 +87,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -95,7 +95,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -111,7 +111,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -120,7 +120,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -129,7 +129,7 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 @Override
                 public void onClick(View view) {
                     if (mItemClickListener != null){
-                        mItemClickListener.onOriginalItemClick(view, statusesDTO);
+                        mItemClickListener.onItemClick(view, statusesDTO);
                     }
                 }
             });
@@ -151,7 +151,6 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         } else {
             return FORWARD_WB;
         }
-        // return super.getItemViewType(position);
     }
 
     @Override
@@ -273,10 +272,16 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 Glide.with(context).clear(weiboContentPic);
                 weiboContentPic.setTag(R.id.weibo_one_pic,position);
             }
+            if (statusesDTO.getRepostsCount() != null){
+                forwardTv.setText(statusesDTO.getRepostsCount());
+            }
+            if (statusesDTO.getCommentsCount() != null){
+                commentTv.setText(statusesDTO.getCommentsCount());
+            }
+            if (statusesDTO.getAttitudesCount() != null){
+                goodsTv.setText(statusesDTO.getAttitudesCount());
+            }
             
-            forwardTv.setText(statusesDTO.getRepostsCount());
-            commentTv.setText(statusesDTO.getCommentsCount());
-            goodsTv.setText(statusesDTO.getAttitudesCount());
 
         }
     }
@@ -381,10 +386,16 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     forwardPicIV.setVisibility(View.VISIBLE);
                 }
             }
-
-            forwardTv.setText(statusesDTO.getRepostsCount());
-            commentTv.setText(statusesDTO.getCommentsCount());
-            goodsTv.setText(statusesDTO.getAttitudesCount());
+            
+            if (statusesDTO.getRepostsCount() != null){
+                forwardTv.setText(statusesDTO.getRepostsCount());
+            }
+            if (statusesDTO.getCommentsCount() != null){
+                commentTv.setText(statusesDTO.getCommentsCount());
+            }
+            if (statusesDTO.getAttitudesCount() != null){
+                goodsTv.setText(statusesDTO.getAttitudesCount());
+            }
         }
     }
 
@@ -393,9 +404,8 @@ public class HomeRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public interface OnListItemClickListener {
-        void onOriginalItemClick(View view, StatusesDTO item);
-
-        void onForwardItemClick(View view, StatusesDTO item);
+        void onItemClick(View view, StatusesDTO item);
+        
     }
 }
 

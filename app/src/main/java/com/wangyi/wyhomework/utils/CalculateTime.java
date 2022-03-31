@@ -1,4 +1,4 @@
-package com.wangyi.wyhomework.common;
+package com.wangyi.wyhomework.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

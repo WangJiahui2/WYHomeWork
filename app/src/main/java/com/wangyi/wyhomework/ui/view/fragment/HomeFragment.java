@@ -49,7 +49,6 @@ public class HomeFragment extends BaseFragment implements IHomeCallBack, HomeRec
     @BindView(R.id.refresh_layout)
     public SwipeRefreshLayout refreshLayout;
 
-    private AlertDialog dialog;
 
     @Override
     protected int getRootViewResId() {
@@ -75,7 +74,6 @@ public class HomeFragment extends BaseFragment implements IHomeCallBack, HomeRec
         mHomeRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-//                super.getItemOffsets(outRect, view, parent, state);
                 outRect.bottom = 10;
             }
         });
@@ -106,7 +104,6 @@ public class HomeFragment extends BaseFragment implements IHomeCallBack, HomeRec
         mHomePresenter.registerLifecycle(this);
         mHomePresenter.createDataBase();
         mHomePresenter.getWeiBoList(LoginActivity.mAccessToken);
-        //       mHomePresenter.getWeiboForId(LoginActivity.mAccessToken.getAccessToken());
 
     }
 
@@ -134,39 +131,29 @@ public class HomeFragment extends BaseFragment implements IHomeCallBack, HomeRec
 
     }
 
-    // 原创微博的点击事件在这里处理
+    // 微博的点击事件在这里处理
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onOriginalItemClick(View view, StatusesDTO itemBean) {
-        //点击图片展示大图，以及关闭大图。
+    public void onItemClick(View view, StatusesDTO itemBean) {
 
         switch (view.getId()) {
             case R.id.weibo_one_pic:
-                PhotoShowDialog photoShowDialogWB = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getOriginalPic()),0);
+                PhotoShowDialog photoShowDialogWB = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getOriginalPic()), 0);
                 photoShowDialogWB.show();
                 break;
             case R.id.weibo_content:
             case R.id.relate_content:
                 Intent intent = new Intent(getContext(), WeiBoActivity.class);
-                intent.putExtra("id",itemBean.getId());
+                intent.putExtra("id", itemBean.getId());
                 startActivity(intent);
                 break;
             case R.id.avatar:
-                PhotoShowDialog photoShowDialogAT = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getUser().getAvatarLarge()),0);
+                PhotoShowDialog photoShowDialogAT = new PhotoShowDialog(view.getContext(), Collections.singletonList(itemBean.getUser().getAvatarLarge()), 0);
                 photoShowDialogAT.show();
                 break;
                 
-                
-
-
-
         }
 
     }
 
-    // 转发微博的点击事件在这里处理
-    @Override
-    public void onForwardItemClick(View view, StatusesDTO item) {
-        
-    }
 }

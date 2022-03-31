@@ -9,9 +9,9 @@
     <application
         android:name=".common.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/weiboicon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/weiboicon"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.WYHomeWork">
         <activity android:name=".ui.view.activity.LoginActivity">

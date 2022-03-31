@@ -3,6 +3,7 @@ package com.wangyi.wyhomework.ui.view.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.Nullable;
@@ -21,7 +22,7 @@ public class WriteWeiBoActivity extends AppCompatActivity implements IWriteWeiBo
 
     
     @BindView(R.id.cancel)
-    public TextView cancleTv;
+    public TextView cancelTv;
     
     @BindView(R.id.send_weibo)
     public TextView sendTv;
@@ -37,13 +38,14 @@ public class WriteWeiBoActivity extends AppCompatActivity implements IWriteWeiBo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_weibo);
         ButterKnife.bind(this);
+        initPresenter();
         initListener();
         
     }
 
 
     private void initListener() {
-        cancleTv.setOnClickListener(new View.OnClickListener() {
+        cancelTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -53,9 +55,12 @@ public class WriteWeiBoActivity extends AppCompatActivity implements IWriteWeiBo
         sendTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mWritePresenter != null){
-                    mWritePresenter.postWeiBo(LoginActivity.mAccessToken, String.valueOf(sendTv.getText()));
-                }
+//                if (mWritePresenter != null){
+//                    mWritePresenter.postWeiBo(LoginActivity.mAccessToken, String.valueOf(sendTv.getText()));
+//                }else{
+                    Toast.makeText(WriteWeiBoActivity.this,"未注册安全域名，此接口暂不开放,代码已实现",Toast.LENGTH_SHORT).show();
+                    finish();
+//                }
                
             }
         });

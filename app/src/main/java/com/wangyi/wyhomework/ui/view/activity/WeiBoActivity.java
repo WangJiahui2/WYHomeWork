@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import com.wangyi.wyhomework.R;
-import com.wangyi.wyhomework.common.CalculateTime;
+import com.wangyi.wyhomework.utils.CalculateTime;
 import com.wangyi.wyhomework.model.comments.Comments;
 import com.wangyi.wyhomework.model.comments.CommentsDTO;
 import com.wangyi.wyhomework.model.comments.StatusDTO;

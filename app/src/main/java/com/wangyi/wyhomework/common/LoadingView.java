@@ -31,7 +31,6 @@ public class LoadingView extends AppCompatImageView {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mNeedRotate = true;
-        //LogUtils.d(this,"onAttachedToWindow...");
         startRotate();
     }
 
@@ -60,7 +59,6 @@ public class LoadingView extends AppCompatImageView {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        //LogUtils.d(this,"onDetachedFromWindow...");
         stopRotate();
     }
 
