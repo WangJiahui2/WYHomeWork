@@ -39,7 +39,7 @@ public class LoadingView extends AppCompatImageView {
             @Override
             public void run() {
                 mDegrees += 10;
-                if(mDegrees >= 360) {
+                if(mDegrees >= 354) {
                     mDegrees = 0;
                 }
                 invalidate();
