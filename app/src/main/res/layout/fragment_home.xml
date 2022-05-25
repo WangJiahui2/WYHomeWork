@@ -27,7 +27,7 @@
             android:text="关注"
             android:layout_centerInParent="true"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="21sp" />
 
         <ImageView
             android:id="@+id/writer_weibo"
