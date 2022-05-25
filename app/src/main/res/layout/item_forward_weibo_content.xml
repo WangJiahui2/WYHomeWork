@@ -49,7 +49,7 @@
             android:layout_toRightOf="@+id/send_time"
             android:text="来自"
             android:textColor="@color/black"
-            android:textSize="9sp" />
+            android:textSize="8sp" />
 
     </RelativeLayout>
 
